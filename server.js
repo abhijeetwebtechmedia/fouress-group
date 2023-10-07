@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const connection = require('./configs/connection');
+const usersRoutes = require('./routers/users.routes');
 
 class Server {
     constructor() {
@@ -22,6 +23,7 @@ class Server {
 
     async handleRouter() {
         this.app.get('/', this.handleInitialRoute.bind(this));
+        this.app.use('/users', usersRoutes.getRouter())
     }
 
     async handleInitialRoute(req, res) {
